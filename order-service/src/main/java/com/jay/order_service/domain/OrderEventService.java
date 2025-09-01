@@ -95,18 +95,24 @@ public class OrderEventService {
                 OrderCreatedEvent orderCreatedEvent =
                         ConvertJsonToObject(orderEventEntity.getPayload(), OrderCreatedEvent.class);
                 orderEventPublisher.publish(orderCreatedEvent);
+                break;
             case ORDER_DELIVERED:
                 OrderDeliveredEvent orderDeliveredEvent =
                         ConvertJsonToObject(orderEventEntity.getPayload(), OrderDeliveredEvent.class);
                 orderEventPublisher.publish(orderDeliveredEvent);
+                break;
             case ORDER_CANCELLED:
                 OrderCancelledEvent orderCancelledEvent =
                         ConvertJsonToObject(orderEventEntity.getPayload(), OrderCancelledEvent.class);
                 orderEventPublisher.publish(orderCancelledEvent);
+                break;
             case ORDER_PROCESSING_FAILED:
                 OrderErrorEvent orderErrorEvent =
                         ConvertJsonToObject(orderEventEntity.getPayload(), OrderErrorEvent.class);
                 orderEventPublisher.publish(orderErrorEvent);
+                break;
+            default:
+                log.warn("Unsupported OrderEventType: {}", orderEventEntity.getEventType());
         }
     }
 
