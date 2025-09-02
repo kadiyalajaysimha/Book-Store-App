@@ -2,8 +2,6 @@ name: Notification Service
 
 on:
   push:
-    paths:
-      - notification-service/**
     branches: main
 
 jobs:
